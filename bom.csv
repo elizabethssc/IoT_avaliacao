@@ -1,0 +1,9 @@
+﻿Nome,Quantidade,Componente
+"R1, R3",2,"330 Ω Resistor"
+"D1",1,"Vermelho LED"
+"U1",1," Arduino Uno R3"
+"PIR1",1,"20.81268883034096 , -178.82538650557618 , -185.00167849192098  Sensor PIR"
+"PIEZO1",1," Piezo"
+"U1",1," Sensor de temperatura [TMP36]"
+"R2",1,"10 kΩ Resistor"
+"S2",1," Botão"
