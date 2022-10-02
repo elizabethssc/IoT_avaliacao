@@ -1,0 +1,38 @@
+// C++ code
+//
+int i = 0;
+
+int counter;
+
+void setup()
+{
+  pinMode(1, INPUT);// Botão de acionamento do sistema de segurança
+  pinMode(A1, INPUT);// Sensor de temperatura
+  pinMode(7, OUTPUT); // Alto-falante/alarme
+  pinMode(LED_BUILTIN, OUTPUT); // Sinalização LED de incêndio
+  pinMode(A0, INPUT); //Sensor de presença
+}
+
+void loop()
+{
+  if (digitalRead(1) == 1) {
+    if ((-40 + 0.488155 * (analogRead(A1) - 20)) > 40) {
+      tone(7, 523, 1000); // Toque de 60Hz (C5 = 523 Hz)
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(1); // Aguarda por 1 milisegundo(s)
+      digitalWrite(LED_BUILTIN, LOW);
+      delay(1000); // Aguarda por 1000 milisegundos(s)
+    }
+    if (analogRead(A0) > 0) {
+      while (!(analogRead(A0) == 0)) {
+        for (counter = 0; counter < 5; ++counter) { //O toque se repete por 5 vezes com intervalo de 2s
+          tone(7, 2960, 1000); // Toque de 90Hz (F#7 = 2960 Hz)
+          delay(1000); // Aguarda por 1000 milisegundos(s)
+          noTone(7);
+          delay(1000); // Aguarda por 1000 milisegundos(s)
+        }
+        delay(2000); // Aguarda por 2000 milisegundos(s)
+      }
+    }
+  }
+}
